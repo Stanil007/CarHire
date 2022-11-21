@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarHire", "CarHire\CarHire.csproj", "{8B254BA3-8060-4660-AA32-07ECBEEE48E8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{39A51BD0-5505-4513-95B5-D02D1B5D7E89} = {39A51BD0-5505-4513-95B5-D02D1B5D7E89}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarHire.Core", "CarHire.Core\CarHire.Core.csproj", "{39A51BD0-5505-4513-95B5-D02D1B5D7E89}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8C684612-7E73-4E92-BA63-CD4F7E3C0EC3} = {8C684612-7E73-4E92-BA63-CD4F7E3C0EC3}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarHire.Infrastructure", "CarHire.Infrastructure\CarHire.Infrastructure.csproj", "{8C684612-7E73-4E92-BA63-CD4F7E3C0EC3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B254BA3-8060-4660-AA32-07ECBEEE48E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B254BA3-8060-4660-AA32-07ECBEEE48E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B254BA3-8060-4660-AA32-07ECBEEE48E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B254BA3-8060-4660-AA32-07ECBEEE48E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39A51BD0-5505-4513-95B5-D02D1B5D7E89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39A51BD0-5505-4513-95B5-D02D1B5D7E89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39A51BD0-5505-4513-95B5-D02D1B5D7E89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39A51BD0-5505-4513-95B5-D02D1B5D7E89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C684612-7E73-4E92-BA63-CD4F7E3C0EC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C684612-7E73-4E92-BA63-CD4F7E3C0EC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C684612-7E73-4E92-BA63-CD4F7E3C0EC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C684612-7E73-4E92-BA63-CD4F7E3C0EC3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {41891848-64FA-4F9F-8914-79B680C12D9C}
+	EndGlobalSection
+EndGlobal
