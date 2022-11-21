@@ -40,26 +40,27 @@ namespace CarHire.Controllers
                 EmailConfirmed = true,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                Age = model.Age
+                Age = model.Age,
+                UserName = model.FirstName
             };
+
+            if (user.Age >= 18 && user.Age <= 25)
+            {
+                user.DriverCategoryId = 1;
+            }
+            else if (user.Age > 25 && user.Age <= 65)
+            {
+                user.DriverCategoryId = 2;
+            }
+            else
+            {
+                user.DriverCategoryId = 3;
+            }
 
             var result = await userManager.CreateAsync(user, model.Password);
 
             if (result.Succeeded)
             {
-                if (user.Age >= 18 && user.Age <= 25)
-                {
-                    user.DriverCategoryId = 1;
-                }
-                else if(user.Age > 25 && user.Age <= 65)
-                {
-                    user.DriverCategoryId = 2;
-                }
-                else
-                {
-                    user.DriverCategoryId = 3;
-                }
-
                 await signInManager.SignInAsync(user, isPersistent: false);
 
                 return RedirectToAction("Index", "Home");
