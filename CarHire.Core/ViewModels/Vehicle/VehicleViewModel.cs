@@ -1,18 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CarHire.Infrastructure.Data.Models
+namespace CarHire.Core.ViewModels.Vehicle
 {
-    public class Vehicle
+    public class VehicleViewModel
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
-        [StringLength(20)]
+        [MinLength(3)]
+        [MaxLength(20)]
         public string Make { get; set; }
 
         [Required]
-        [StringLength(20)]
+        [MinLength(3)]
+        [MaxLength(20)]
         public string Model { get; set; }
 
         [Required]
@@ -21,7 +20,5 @@ namespace CarHire.Infrastructure.Data.Models
 
         [Required]
         public int VehicleTypeId { get; set; }
-
-        public VehicleType VehicleType { get; set; }
     }
 }
