@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CarHire.Core\CarHire.Core.csproj" />
     <ProjectReference Include="..\CarHire.Infrastructure\CarHire.Infrastructure.csproj" />
   </ItemGroup>
 

@@ -2,40 +2,106 @@
 using CarHire.Core.ViewModels.Vehicle;
 using CarHire.Infrastructure.Data.Models;
 using CarHire.Infrastructure.Data.Common;
+using CarHire.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarHire.Core.Services
 {
     public class VehicleService : IVehicleService
     {
-        private readonly IRepository repo;
+        private readonly ApplicationDbContext context;
 
-        public VehicleService(IRepository _repo)
+        public VehicleService(ApplicationDbContext _context)
         {
-            repo = _repo;
+            context = _context;
         }
-        public async Task<IEnumerable<VehicleViewModel>> All()
+        public async Task<IEnumerable<AllVehicleViewModel>> GetAllAsync()
         {
-            return await repo.AllReadonly<Vehicle>();
-        }
+            var vehicle = await context.Vehicles
+                .ToListAsync();
 
-        public Task CreateAsync(VehicleViewModel model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task Delete(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<VehicleViewModel> Details(string id)
-        {
-            throw new NotImplementedException();
+            return vehicle.Select(v => new AllVehicleViewModel()
+            {
+                Make = v.Make,
+                Model = v.Model,
+                ImageUrl = v.ImageUrl,
+                PricePerDay = v.PricePerDay
+            });
         }
 
-        public Task EditAsync(VehicleViewModel model)
+        public async Task CreateVehicleAsync(VehicleViewModel model)
         {
-            throw new NotImplementedException();
+            var vehicle = new Vehicle()
+            {
+                Make = model.Make,
+                Model = model.Model,
+                Color = model.Color,
+                VehicleTypeId = model.VehicleTypeId,
+                ImageUrl = model.ImageUrl,
+                PricePerDay = model.PricePerDay
+            };
+
+            await context.Vehicles.AddAsync(vehicle);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task Delete(int id)
+        {
+            var vehicle = await context.Vehicles
+                .FirstOrDefaultAsync(v => v.Id == id);
+
+            context.Vehicles.Remove(vehicle);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task<VehicleDetailsViewModel> Details(int id)
+        {
+            return await context.Vehicles
+                .Where(v => v.Id == id)
+                .Select(v => new VehicleDetailsViewModel()
+                {  
+                    Make = v.Make,
+                    Model = v.Model,
+                    Color = v.Color,
+                    VehicleTypeId = v.VehicleTypeId,
+                    IsHired= v.IsHired,
+                    ImageUrl = v.ImageUrl,
+                    PricePerDay = v.PricePerDay
+                })
+                .FirstAsync();
+        }
+
+        public async Task EditAsync(int id ,VehicleViewModel model)
+        {
+            var vehicle = await context.Vehicles
+                .FirstOrDefaultAsync(v => v.Id == id);
+
+            vehicle.Make = model.Make;
+            vehicle.Model = model.Model;
+            vehicle.Color = model.Color;
+            vehicle.VehicleTypeId = model.VehicleTypeId;
+            vehicle.PricePerDay = model.PricePerDay;
+            vehicle.ImageUrl = model.ImageUrl;
+
+            await context.SaveChangesAsync();
+        }
+
+        public async Task<VehicleViewModel> FindById(int id)
+        {
+            var vehicle = await context.Vehicles
+                .Where(v => v.Id == id)
+                .Select(v => new VehicleViewModel()
+                {
+                    Make = v.Make,
+                    Model = v.Model,
+                    Color = v.Color,
+                    VehicleTypeId = v.VehicleTypeId,
+                    PricePerDay = v.PricePerDay,
+                    ImageUrl = v.ImageUrl
+                })
+                .FirstOrDefaultAsync();
+
+            return vehicle;
         }
     }
 }

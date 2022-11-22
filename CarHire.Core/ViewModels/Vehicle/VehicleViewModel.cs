@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace CarHire.Core.ViewModels.Vehicle
 {
@@ -20,5 +21,14 @@ namespace CarHire.Core.ViewModels.Vehicle
 
         [Required]
         public int VehicleTypeId { get; set; }
+
+        [Required]
+        [StringLength(250)]
+        public string ImageUrl { get; set; }
+
+        [Required]
+        [Precision(7,2)]
+        [Range(20, 99999)]
+        public decimal PricePerDay { get; set; }
     }
 }

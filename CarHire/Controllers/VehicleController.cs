@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CarHire.Core.Contracts;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CarHire.Controllers
 {
+    [Authorize]
     public class VehicleController : Controller
-    {
-        public IActionResult Index()
-        {
-            return View();
-        }
+    { 
+        private readonly IVehicleService vehicleService;
+
+
     }
 }
