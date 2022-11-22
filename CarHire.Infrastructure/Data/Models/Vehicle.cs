@@ -20,6 +20,15 @@ namespace CarHire.Infrastructure.Data.Models
         public string Color { get; set; }
 
         [Required]
+        public decimal PricePerDay { get; set; }
+
+        [Required]
+        public string ImageUrl { get; set; }
+
+        [Required]
+        public bool IsHired { get; set; } = false;
+
+        [Required]
         public int VehicleTypeId { get; set; }
 
         public VehicleType VehicleType { get; set; }

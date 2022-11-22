@@ -23,7 +23,7 @@ namespace CarHire.Infrastructure.Data.Models
         [ForeignKey(nameof(DriverCategoryId))]
         public DriverCategory DriverCategory { get; set; }
 
-        public ICollection<Contract> Contracts { get; set; } = new List<Contract>();
+        public IEnumerable<Contract> Contracts { get; set; } = new List<Contract>();
 
     }
 }

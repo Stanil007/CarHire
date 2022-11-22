@@ -11,6 +11,6 @@ namespace CarHire.Infrastructure.Data.Models
         [StringLength(20)]
         public string Name { get; set; }
 
-        public ICollection<VehicleType> VehicleTypes { get; set; } = new List<VehicleType>();
+        public IEnumerable<VehicleType> VehicleTypes { get; set; } = new List<VehicleType>();
     }
 }

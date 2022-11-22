@@ -15,9 +15,6 @@ namespace CarHire.Infrastructure.Data.Models
         public DateTime FinishDate { get; set; }
 
         [Required]
-        public decimal PricePerDay { get; set; }
-
-        [Required]
         public string ApplicationUsersId { get; set; }
 
         [ForeignKey(nameof(ApplicationUsersId))]
