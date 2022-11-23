@@ -1,0 +1,28 @@
+﻿@using CarHire.Core.ViewModels.Vehicle
+@model IEnumerable<AllVehicleViewModel>
+@{
+    ViewBag.Title = "All Vehicles";
+}
+
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="text-center row">
+    @foreach (var vehicle in Model)
+    {
+        <div class="card col-4" style="width: 20rem; ">
+            <img class="card-img-top" style="width: 18rem;"
+             src="@vehicle.ImageUrl" alt="Vehicle Image">
+            <div class="card-body">
+                <p class="mb-0">Make: @vehicle.Make</p>
+                <p class="mb-0">Model: @vehicle.Model</p>
+                <p class="mb-0">Price: @vehicle.PricePerDay</p>
+            </div>
+
+            <form class="input-group-sm" asp-controller="Vehicle" asp-action="All">
+                <input type="submit" value="Add to Collection" class="fs-6 btn btn-success mb-3 p-2" />
+            </form>
+        </div>
+    }
+</div>

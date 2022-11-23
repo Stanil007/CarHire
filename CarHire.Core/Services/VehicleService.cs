@@ -1,8 +1,7 @@
 ﻿using CarHire.Core.Contracts;
 using CarHire.Core.ViewModels.Vehicle;
-using CarHire.Infrastructure.Data.Models;
-using CarHire.Infrastructure.Data.Common;
 using CarHire.Infrastructure.Data;
+using CarHire.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarHire.Core.Services
@@ -17,10 +16,10 @@ namespace CarHire.Core.Services
         }
         public async Task<IEnumerable<AllVehicleViewModel>> GetAllAsync()
         {
-            var vehicle = await context.Vehicles
-                .ToListAsync();
+            var vehicles = await context.Vehicles
+                 .ToListAsync();
 
-            return vehicle.Select(v => new AllVehicleViewModel()
+            return vehicles.Select(v => new AllVehicleViewModel
             {
                 Make = v.Make,
                 Model = v.Model,
@@ -54,11 +53,11 @@ namespace CarHire.Core.Services
             await context.SaveChangesAsync();
         }
 
-        public async Task<VehicleDetailsViewModel> Details(int id)
+        public async Task<EditVehicleViewModel> Details(int id)
         {
             return await context.Vehicles
                 .Where(v => v.Id == id)
-                .Select(v => new VehicleDetailsViewModel()
+                .Select(v => new EditVehicleViewModel()
                 {  
                     Make = v.Make,
                     Model = v.Model,
@@ -71,7 +70,7 @@ namespace CarHire.Core.Services
                 .FirstAsync();
         }
 
-        public async Task EditAsync(int id ,VehicleViewModel model)
+        public async Task EditAsync(int id , EditVehicleViewModel model)
         {
             var vehicle = await context.Vehicles
                 .FirstOrDefaultAsync(v => v.Id == id);
@@ -86,11 +85,11 @@ namespace CarHire.Core.Services
             await context.SaveChangesAsync();
         }
 
-        public async Task<VehicleViewModel> FindById(int id)
+        public async Task<EditVehicleViewModel> FindById(int id)
         {
             var vehicle = await context.Vehicles
                 .Where(v => v.Id == id)
-                .Select(v => new VehicleViewModel()
+                .Select(v => new EditVehicleViewModel()
                 {
                     Make = v.Make,
                     Model = v.Model,

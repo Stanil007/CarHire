@@ -1,3 +1,5 @@
+using CarHire.Core.Contracts;
+using CarHire.Core.Services;
 using CarHire.Infrastructure.Data;
 using CarHire.Infrastructure.Data.Common;
 using CarHire.Infrastructure.Data.Models;
@@ -19,7 +21,7 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<IRepository, Repository>();
+builder.Services.AddScoped<IVehicleService, VehicleService>();
 
 var app = builder.Build();
 

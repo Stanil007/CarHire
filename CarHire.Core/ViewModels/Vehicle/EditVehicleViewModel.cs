@@ -1,10 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CarHire.Core.ViewModels.Vehicle
 {
-    public class VehicleViewModel
+    public class EditVehicleViewModel
     {
+        public int Id { get; set; }
 
         [Required]
         [MinLength(3)]
@@ -27,8 +33,10 @@ namespace CarHire.Core.ViewModels.Vehicle
         [StringLength(250)]
         public string ImageUrl { get; set; }
 
+        public bool IsHired { get; set; }
+
         [Required]
-        [Precision(7,2)]
+        [Precision(7, 2)]
         [Range(20, 99999)]
         public decimal PricePerDay { get; set; }
     }
