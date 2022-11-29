@@ -22,7 +22,7 @@ namespace CarHire.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> All()
         {
-           var model = driverCategoryService.GetAllAsync();
+           var model = await driverCategoryService.GetAllAsync();
 
             return View(model);
         }
