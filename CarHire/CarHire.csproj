@@ -20,4 +20,10 @@
     <ProjectReference Include="..\CarHire.Infrastructure\CarHire.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Contract\" />
+    <Folder Include="Views\DriverCategory\" />
+    <Folder Include="Views\InsuranceType\" />
+  </ItemGroup>
+
 </Project>

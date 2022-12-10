@@ -4,11 +4,11 @@ namespace CarHire.Core.Contracts
 {
     public interface IContractService
     {
-        Task<IEnumerable<AllContractViewModel>> GetAllAsync();
+        Task<IEnumerable<ContractViewModel>> GetAllAsync();
 
-        Task CreateContractAsync(CreateContractViewViewModel model);
+        Task CreateContractAsync(ContractViewModel model);
 
-        Task Delete(int id);
+        Task Edit(int id, ContractViewModel model);
 
         Task<ContractViewModel> FindById(int id);
     }

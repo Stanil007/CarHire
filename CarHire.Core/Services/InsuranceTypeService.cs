@@ -57,7 +57,8 @@ namespace CarHire.Core.Services
             return insuranceTypes.Select(i => new InsuranceTypeViewModel()
             {
                 Name = i.Name
-            });
+            })
+            .ToList();
         }
     }
 }

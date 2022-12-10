@@ -1,5 +1,4 @@
-﻿@using CarHire.Core.ViewModels.Vehicle
-@model IEnumerable<AllVehicleViewModel>
+﻿@model IEnumerable<AllVehicleViewModel>
 @{
     ViewBag.Title = "All Vehicles";
 }
@@ -20,7 +19,7 @@
                 <p class="mb-0">Price: @vehicle.PricePerDay</p>
             </div>
 
-            <form class="input-group-sm" asp-controller="Vehicle" asp-action="All">
+            <form class="input-group-sm" asp-area="" asp-controller="Vehicle" asp-action="All">
                 <input type="submit" value="Add to Collection" class="fs-6 btn btn-success mb-3 p-2" />
             </form>
         </div>

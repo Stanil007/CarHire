@@ -1,6 +1,8 @@
 ﻿using CarHire.Core.Contracts;
 using CarHire.Core.ViewModels.ContractDTOs;
 using CarHire.Infrastructure.Data;
+using CarHire.Infrastructure.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarHire.Core.Services
 {
@@ -13,24 +15,64 @@ namespace CarHire.Core.Services
             context = _context;
         }
 
-        public Task CreateContractAsync(CreateContractViewViewModel model)
+        public async Task CreateContractAsync(ContractViewModel model)
         {
+            var contract = new Contract()
+            {
+                StartDate = DateTime.Parse(model.StartDate),
+                FinishDate = DateTime.Parse(model.FinishDate),
+                ApplicationUsersId = model.ApplicationUsersId,
+                VehicleId = model.VehicleId,
+                InsuranceId = model.InsuranceId
+            };
 
+            await context.Contracts.AddAsync(contract);
+            await context.SaveChangesAsync();
         }
 
-        public Task Delete(int id)
+        public async Task Edit(int contractId, ContractViewModel model)
         {
-            throw new NotImplementedException();
+            var contract = await context.Contracts.FirstOrDefaultAsync(x => x.Id == contractId);
+
+            contract.StartDate = DateTime.Parse(model.StartDate);
+            contract.FinishDate = DateTime.Parse(model.FinishDate);
+            contract.ApplicationUsersId = model.ApplicationUsersId;
+            contract.VehicleId = model.VehicleId;
+            contract.InsuranceId = model.InsuranceId;
+
+            await context.SaveChangesAsync();
         }
 
-        public Task<ContractViewModel> FindById(int id)
+        public async Task<ContractViewModel> FindById(int id)
         {
-            throw new NotImplementedException();
+            var contract = await context.Contracts
+                .Where(x => x.Id == id)
+                .Select(x => new ContractViewModel
+                {
+                    StartDate = x.StartDate.ToString(),
+                    FinishDate = x.FinishDate.ToString(),
+                    ApplicationUsersId = x.ApplicationUsersId,
+                    VehicleId = x.VehicleId,
+                    InsuranceId = x.InsuranceId
+                })
+                .FirstOrDefaultAsync();
+
+            return contract;
         }
 
-        public Task<IEnumerable<AllContractViewModel>> GetAllAsync()
+        public async Task<IEnumerable<ContractViewModel>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var contracts = await context.Contracts.ToListAsync();
+
+            return  contracts.Select(x => new ContractViewModel
+            {
+                StartDate = x.StartDate.ToString(),
+                FinishDate = x.FinishDate.ToString(),
+                ApplicationUsersId = x.ApplicationUsersId,
+                VehicleId = x.VehicleId,
+                InsuranceId = x.InsuranceId
+            })
+                .ToList();
         }
     }
 }
