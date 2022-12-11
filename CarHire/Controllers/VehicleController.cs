@@ -1,11 +1,15 @@
 ﻿using CarHire.Core.Contracts;
 using CarHire.Core.ViewModels.Vehicle;
+using CarHire.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarHire.Controllers
 {
-    [Authorize]
+   // [Authorize]
+
+    // Fill the categories collection
+
     public class VehicleController : Controller
     { 
         private readonly IVehicleService vehicleService;
@@ -19,15 +23,18 @@ namespace CarHire.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> All()
         {
-            var vehicles = vehicleService.GetAllAsync();
+            var vehicles = await vehicleService.GetAllAsync();
 
             return View(vehicles);
         }
 
         [HttpGet]
-        public IActionResult CreateVehicle()
+        public async Task <IActionResult> CreateVehicle()
         {
-            var model = new VehicleViewModel();
+            var model = new VehicleViewModel()
+            {
+                VehicleType = await vehicleService.GetVehicleTypesAsync()
+            };
 
             return View(model);
         }

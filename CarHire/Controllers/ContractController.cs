@@ -1,10 +1,7 @@
 ﻿using CarHire.Core.Contracts;
-using CarHire.Core.Services;
 using CarHire.Core.ViewModels.ContractDTOs;
-using CarHire.Core.ViewModels.DiverCategory;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace CarHire.Controllers
 {

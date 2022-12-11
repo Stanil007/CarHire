@@ -1,4 +1,5 @@
 ﻿using CarHire.Core.ViewModels.Vehicle;
+using CarHire.Infrastructure.Data.Models;
 
 namespace CarHire.Core.Contracts
 {
@@ -15,5 +16,7 @@ namespace CarHire.Core.Contracts
         Task Delete(int id);
 
         Task<EditVehicleViewModel> FindById(int id);
+
+        Task<IEnumerable<VehicleType>> GetVehicleTypesAsync();
     }
 }

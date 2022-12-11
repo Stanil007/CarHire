@@ -1,8 +1,5 @@
 ﻿using CarHire.Core.Contracts;
-using CarHire.Core.Services;
 using CarHire.Core.ViewModels.DiverCategory;
-using CarHire.Core.ViewModels.Vehicle;
-using CarHire.Infrastructure.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

@@ -102,5 +102,10 @@ namespace CarHire.Core.Services
 
             return vehicle;
         }
+
+        public async Task<IEnumerable<VehicleType>> GetVehicleTypesAsync()
+        {
+            return await context.VehicleTypes.ToListAsync();
+        }
     }
 }

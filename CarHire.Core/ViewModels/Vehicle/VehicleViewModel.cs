@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CarHire.Infrastructure.Data.Models;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace CarHire.Core.ViewModels.Vehicle
@@ -23,12 +24,15 @@ namespace CarHire.Core.ViewModels.Vehicle
         [Required]
         public int VehicleTypeId { get; set; }
 
+        public IEnumerable<VehicleType> VehicleType { get; set; } = new List<VehicleType>();
+
         [Required]
         [StringLength(250)]
         public string ImageUrl { get; set; }
 
+
         [Required]
-        [Precision(7,2)]
+        [Precision(7, 2)]
         [Range(20, 99999)]
         public decimal PricePerDay { get; set; }
     }

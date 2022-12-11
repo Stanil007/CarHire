@@ -1,10 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+﻿using CarHire.Infrastructure.Data.Models;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarHire.Core.ViewModels.Vehicle
 {
@@ -28,6 +24,8 @@ namespace CarHire.Core.ViewModels.Vehicle
 
         [Required]
         public int VehicleTypeId { get; set; }
+
+        public IEnumerable<VehicleType> VehicleType { get; set; } = new List<VehicleType>();
 
         [Required]
         [StringLength(250)]
